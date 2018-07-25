@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DEALERProxyREP", "DEALERProxyREP", "{F1121FD6-EAB1-4058-98AA-E8EFC789F587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEALERProxyREP.Client", "DEALERProxyREP\DEALERProxyREP.Client\DEALERProxyREP.Client.csproj", "{F49B05C4-4FD7-4B68-99EE-36E18B8FE5EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEALERProxyREP.Server", "DEALERProxyREP\DEALERProxyREP.Server\DEALERProxyREP.Server.csproj", "{36510A27-D1A9-4559-8903-0A11C5F2A559}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F49B05C4-4FD7-4B68-99EE-36E18B8FE5EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F49B05C4-4FD7-4B68-99EE-36E18B8FE5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F49B05C4-4FD7-4B68-99EE-36E18B8FE5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F49B05C4-4FD7-4B68-99EE-36E18B8FE5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36510A27-D1A9-4559-8903-0A11C5F2A559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36510A27-D1A9-4559-8903-0A11C5F2A559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36510A27-D1A9-4559-8903-0A11C5F2A559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36510A27-D1A9-4559-8903-0A11C5F2A559}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F49B05C4-4FD7-4B68-99EE-36E18B8FE5EE} = {F1121FD6-EAB1-4058-98AA-E8EFC789F587}
+		{36510A27-D1A9-4559-8903-0A11C5F2A559} = {F1121FD6-EAB1-4058-98AA-E8EFC789F587}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {400743FA-5D75-40C9-ACD6-1638A1EB416A}
+	EndGlobalSection
+EndGlobal
