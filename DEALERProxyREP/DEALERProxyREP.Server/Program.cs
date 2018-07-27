@@ -13,27 +13,49 @@ namespace DEALERProxyREP.Server
 {
     class Program
     {
+        private static Random random = new Random();
         static void Main(string[] args)
         {
             var proxy1 = new Proxy(new RouterSocket("@tcp://*:5001"), new DealerSocket("@tcp://*:5002"));
             Task.Factory.StartNew(proxy1.Start);
 
-            NetMQPoller poller1 = new NetMQPoller();
+            //NetMQPoller poller1 = new NetMQPoller();
 
-            for (var i = 0; i < 2; i++)
+            for (var i = 0; i < 10; i++)
             {
-                var response = new ResponseSocket(">tcp://127.0.0.1:5002");
-                response.ReceiveReady += (o, s) =>
+                Task.Factory.StartNew((o)=> 
                 {
-                    var msg = s.Socket.ReceiveFrameString();
+                    var response = new ResponseSocket(">tcp://127.0.0.1:5002");
+                    while (true)
+                    {
+                        var msg = response.ReceiveFrameString();
 
-                    s.Socket.SendFrame(msg);
+                        /* your task
+                        var r = random.NextDouble();
 
-                    Console.WriteLine(msg);
-                };
-                poller1.Add(response);
+                        if (r > 0 && r < 0.78)
+                        {
+                            Thread.Sleep(random.Next(1, 51));
+                        }
+                        else if (r >= 0.78 & r < 0.78 + 0.21)
+                        {
+                            Thread.Sleep(random.Next(51, 101));
+                        }
+                        else
+                        {
+                            Thread.Sleep(random.Next(101, 300));
+                        }
+                        */
+
+                        //Console.WriteLine(response.Options.Identity[0]);
+
+                        response.SendFrame(msg);
+
+                        //Console.WriteLine(msg);
+                    }
+                },i);
             }
-            poller1.RunAsync();
+            //poller1.RunAsync();
 
             Console.WriteLine("Press any key to stop!");
             Console.Read();

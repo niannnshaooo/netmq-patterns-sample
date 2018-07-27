@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 using NetMQ;
 using NetMQ.Sockets;
 
-namespace DEALERProxyREP.Client
+namespace DEALERProxyDEALER.Client
 {
-    //http://zguide.zeromq.org/page:all#The-DEALER-to-REP-Combination
     class Program
     {
         private static bool isRunning = true;
 
-        private static int sendcount, presendcount = 0;
-        private static int receivecount, prereceivecount = 0;
-        private static int processcount, preprocesscount = 0;
 
-        private static int testcount = 500;
+        private static long sendcount, presendcount = 0;
+        private static long receivecount, prereceivecount = 0;
+        private static long processcount, preprocesscount = 0;
+
+        private static int testcount = 1000;
         static void Main(string[] args)
         {
             Console.WriteLine("Press any key to start!");
@@ -36,7 +36,7 @@ namespace DEALERProxyREP.Client
             {
                 while (true)
                 {
-                    Console.WriteLine($"send:{(sendcount) / 10}/s,receive:{(receivecount) / 10}/s");
+                    Console.WriteLine($"send:{(sendcount)/10}/s,receive:{(receivecount)/10}/s");
 
                     sendcount = 0;
                     receivecount = 0;
@@ -46,7 +46,7 @@ namespace DEALERProxyREP.Client
             }).Start();
 
 
-            new Thread(() =>
+            new Thread(()=> 
             {
                 while (true)
                 {
@@ -64,7 +64,7 @@ namespace DEALERProxyREP.Client
                 }
             }).Start();
 
-            client.Options.Identity = Encoding.UTF8.GetBytes($"clientid-{Process.GetCurrentProcess().Id}");
+            client.Options.Identity = Encoding.UTF8.GetBytes($"dealerclient");
             client.ReceiveReady += (s, e) =>
             {
                 e.Socket.ReceiveFrameBytes();
@@ -72,19 +72,20 @@ namespace DEALERProxyREP.Client
                 //Console.WriteLine($"RECEIVE:{msg}");
                 receivecount++;
                 prereceivecount++;
-
             };
             Queue.ReceiveReady += (s, e) =>
             {
                 var msg = e.Queue.Dequeue();
                 client.SendMoreFrameEmpty().SendFrame($"{Encoding.UTF8.GetString(client.Options.Identity)}-{msg}");
-                //Console.WriteLine($"SEND:{msg}");
-                sendcount++; 
+                //Console.WriteLine($"SEND:{Encoding.UTF8.GetString(client.Options.Identity)}-{msg}");
+                sendcount++;
             };
+
             Poller2.Add(Queue);
+
             Poller2.Add(client);
             Poller2.RunAsync();
-            
+
 
             Console.WriteLine("Press any key to stop!");
             Console.Read();
