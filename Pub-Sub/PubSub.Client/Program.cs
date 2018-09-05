@@ -26,7 +26,7 @@ namespace PubSub.Client
             poller.Add(queue);
             poller.RunAsync();
 
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < 50; i++)
             {
                 Task.Factory.StartNew(Run, i);
             }

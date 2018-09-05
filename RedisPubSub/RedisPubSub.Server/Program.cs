@@ -10,7 +10,7 @@ namespace RedisPubSub.Server
 {
     class Program
     {
-        private static ConnectionMultiplexer ConnectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:5379,127.0.0.1:5380,password=glee1234");
+        private static ConnectionMultiplexer ConnectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:5379,127.0.0.1:5380,password=123456");
 
 
         private static List<TimeSpan> d = new List<TimeSpan>();
@@ -31,13 +31,13 @@ namespace RedisPubSub.Server
             {
                 while (true)
                 {
-                    Thread.Sleep(1 * 1000);
+                    Thread.Sleep(10 * 1000);
 
                     var tmp = d;
                     d = new List<TimeSpan>();
 
                     if (tmp.Any())
-                        Console.WriteLine($"{DateTime.Now}\t{tmp.Count / 1}/s\t{tmp.Average(x => x.TotalMilliseconds)}");
+                        Console.WriteLine($"{DateTime.Now}\t{tmp.Count / 10}/s\t{tmp.Average(x => x.TotalMilliseconds)}");
                     else
                         Console.WriteLine("-");
                 }

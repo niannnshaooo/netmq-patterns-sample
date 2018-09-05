@@ -29,13 +29,13 @@ namespace PubSub.Server
             {
                 while (true)
                 {
-                    Thread.Sleep(1*1000);
+                    Thread.Sleep(10*1000);
 
                     var tmp = d;
                     d = new List<TimeSpan>();
 
                     if (tmp.Any())
-                        Console.WriteLine($"{DateTime.Now}\t{tmp.Count / 1}/s\t{tmp.Average(x => x.TotalMilliseconds)}");
+                        Console.WriteLine($"{DateTime.Now}\t{tmp.Count / 10}/s\t{tmp.Average(x => x.TotalMilliseconds)}");
                     else
                         Console.WriteLine("-");
                 }

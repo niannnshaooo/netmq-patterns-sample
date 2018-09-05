@@ -10,11 +10,11 @@ namespace RedisPubSub.Client
 {
     class Program
     {
-        private static ConnectionMultiplexer ConnectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:5379,127.0.0.1:5380,password=glee1234");
+        private static ConnectionMultiplexer ConnectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:5379,127.0.0.1:5380,password=123456");
 
         static void Main(string[] args)
         {
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < 50; i++)
             {
                 Task.Factory.StartNew(Run,i);
             }
